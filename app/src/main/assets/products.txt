@@ -1,0 +1,16 @@
+8534,Rum,9.99
+6011,Spyglass,6.99
+7218,Pistol,14.98
+1287,Rapier,4.99
+7108,Parrot,3.98
+2943,Pegleg,3.49
+3257,Hook,2.98
+4685,Grog,7.98
+8432,Eye Patch,33.94
+1894,Knife,9.45
+6789,Compass,35.45
+8531,Wench,18.97
+2314,Map,98.63
+7824,Cannon,296.99
+4851,Boots,49.97
+1684,Wooden Eye,18.60

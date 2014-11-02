@@ -163,7 +163,7 @@ public class CheckOutActivity extends Activity {
 		
 		
 		// not enough paid
-		if (!(total-tendered <= 0)) {
+		if (!(total-tendered < 0)) {
 			AlertDialog notEnough = new AlertDialog.Builder(this).create();
 			notEnough.setTitle("Shiver me timbers!");
 			notEnough.setMessage("Ye must collect all yer plunder from yer customer.");

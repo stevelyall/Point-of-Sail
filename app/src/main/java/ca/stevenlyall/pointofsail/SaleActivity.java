@@ -2,8 +2,12 @@
 
 package ca.stevenlyall.pointofsail;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
@@ -57,8 +62,8 @@ public class SaleActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sale);
 		
-		//loadProducts();
-		loadProductsNoFile();
+		loadProducts();
+		//loadProductsNoFile();
 		
 		createAvailProductsList();
 		productsOnOrderListView = (ListView) findViewById(R.id.productsOnTicket);
@@ -171,12 +176,14 @@ public class SaleActivity extends Activity {
 	// loads the product list from the text file, adds values to ArrayList. Works fine, but not used right now
 	public void loadProducts() {
 		try {
-			File pfile = new File(Environment.getExternalStorageDirectory(),
-					"productList.txt");
-			Scanner s = new Scanner(pfile);
-			String line;
-			while (s.hasNext()) {
-				line = s.nextLine();
+            AssetManager am = getAssets();
+            InputStream stream = am.open("products.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+
+
+			String line = "";
+			while ((line = br.readLine())!=null) {
+                Log.i("ProductFile", "current line is " + line);
 				int a = line.indexOf(',');
 				int b = line.lastIndexOf(',');
 	
@@ -196,10 +203,10 @@ public class SaleActivity extends Activity {
 				Log.i("ProductFile", "Product data file item load success");
 				productsAvailable.add(new Product(num, name, price));
 			}
-			s.close();
-	
-		} catch (FileNotFoundException e) {
-			Log.e("ProductFile", "Can't find productList.txt", e);
+			br.close();
+
+		} catch (IOException e) {
+			Log.e("ProductFile", "Problem reading products.txt", e);
 			e.printStackTrace();
 		}
 	}
