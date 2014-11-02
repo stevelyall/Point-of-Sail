@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,7 +53,7 @@ public class CheckOutActivity extends Activity {
         newSaleButton = (Button)findViewById(R.id.newSaleButton);
         newSaleButton.setOnClickListener(new OnClickListener () {
         	public void onClick(View v) {
-        		Intent newSale = new Intent(getBaseContext(),MainActivity.class);
+        		Intent newSale = new Intent(getBaseContext(),SaleActivity.class);
         		startActivity(newSale);
         		finish();
         	}
@@ -83,13 +84,17 @@ public class CheckOutActivity extends Activity {
         			amountEditText.setText(df.format(total));
         		}
         		
-        	}
+            }
 		});
         
         getTotals();
         amountEditText.setText(df.format(total));
-        
-	}
+
+        Typeface pirate = Typeface.createFromAsset(getAssets(),"fonts/Treamd.ttf");
+        doneButton.setTypeface(pirate);
+        newSaleButton.setTypeface(pirate);
+        tenderButton.setTypeface(pirate);
+    }
 	
 	private void tenderSale() {
 		boolean dontComplete = false;
@@ -179,7 +184,7 @@ public class CheckOutActivity extends Activity {
 			doneButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Intent newSale = new Intent(getBaseContext(),MainActivity.class);
+					Intent newSale = new Intent(getBaseContext(),SaleActivity.class);
 	        		startActivity(newSale);
 	        		finish();
 					
@@ -192,18 +197,18 @@ public class CheckOutActivity extends Activity {
 	
 	private void showPostSaleAmounts() {
 		amountTenderedTextView.setText(df.format(tendered));
-		amountTenderedLabel.setVisibility(1);
-		amountTenderedTextView.setVisibility(1);
+		amountTenderedLabel.setVisibility(View.VISIBLE);
+		amountTenderedTextView.setVisibility(View.VISIBLE);
 		changeAmountTextView.setText(df.format(total-tendered));
-		changeAmountLabel.setVisibility(1);
-		changeAmountTextView.setVisibility(1);
+		changeAmountLabel.setVisibility(View.VISIBLE);
+		changeAmountTextView.setVisibility(View.VISIBLE);
 	}
 	
 	private void hidePostSaleAmounts() {
-		amountTenderedLabel.setVisibility(0);
-		amountTenderedTextView.setVisibility(0);
-		changeAmountLabel.setVisibility(0);
-		changeAmountTextView.setVisibility(0);
+		amountTenderedLabel.setVisibility(View.INVISIBLE);
+		amountTenderedTextView.setVisibility(View.INVISIBLE);
+		changeAmountLabel.setVisibility(View.INVISIBLE);
+		changeAmountTextView.setVisibility(View.INVISIBLE);
 	}
 	
 	private void getTotals() {

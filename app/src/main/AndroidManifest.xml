@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name="CheckOutActivity" android:screenOrientation="landscape"></activity>
+        <activity android:name="SaleActivity" android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
