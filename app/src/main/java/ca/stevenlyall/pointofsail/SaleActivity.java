@@ -144,11 +144,10 @@ public class SaleActivity extends Activity {
         };
         checkOutButton.setOnClickListener(checkOutListener);
 
-       addButton.setOnClickListener(new View.OnClickListener() {
+       addButton.setOnClickListener( new View.OnClickListener() {
            @Override
            // TODO addButton works for first item but thats it
            // Handler for Add button. If user has typed a valid product ID in search field, adds the product to the order, shows a toast otherwise
-
            public void onClick(View v) {
                int productToFind;
                try {

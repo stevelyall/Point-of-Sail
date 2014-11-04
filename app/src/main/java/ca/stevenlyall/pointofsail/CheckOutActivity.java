@@ -157,7 +157,7 @@ public class CheckOutActivity extends Activity {
 		}
 		
 		if (dontComplete) {
-			
+
 			return;
 		}
 		
@@ -168,13 +168,13 @@ public class CheckOutActivity extends Activity {
 			notEnough.setTitle("Shiver me timbers!");
 			notEnough.setMessage("Ye must collect all yer plunder from yer customer.");
 			notEnough.setButton(RESULT_OK, "Try again", new DialogInterface.OnClickListener() {
-				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 								
 				}
 			});
-			notEnough.show();
+			hidePostSaleAmounts();
+            notEnough.show();
 		}
 		else {
 			Toast.makeText(this, "Arr, well done, matey!", Toast.LENGTH_LONG).show();
@@ -195,7 +195,7 @@ public class CheckOutActivity extends Activity {
 
 	}
 	
-	private void showPostSaleAmounts() {
+	public void showPostSaleAmounts() {
 		amountTenderedTextView.setText(df.format(tendered));
 		amountTenderedLabel.setVisibility(View.VISIBLE);
 		amountTenderedTextView.setVisibility(View.VISIBLE);
@@ -204,7 +204,7 @@ public class CheckOutActivity extends Activity {
 		changeAmountTextView.setVisibility(View.VISIBLE);
 	}
 	
-	private void hidePostSaleAmounts() {
+	public void hidePostSaleAmounts() {
 		amountTenderedLabel.setVisibility(View.INVISIBLE);
 		amountTenderedTextView.setVisibility(View.INVISIBLE);
 		changeAmountLabel.setVisibility(View.INVISIBLE);
